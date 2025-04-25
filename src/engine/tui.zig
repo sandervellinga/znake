@@ -18,7 +18,7 @@ pub fn init() !void {
 
     size = try getSize();
 
-    try os.sigaction(os.SIG.WINCH, &os.Sigaction{
+    os.sigaction(os.SIG.WINCH, &os.Sigaction{
         .handler = .{ .handler = handleSigWinch },
         .mask = os.empty_sigset,
         .flags = 0,
@@ -192,7 +192,7 @@ fn getSize() !Size {
         return os.unexpectedErrno(@enumFromInt(err));
     }
     return Size{
-        .height = win_size.ws_row - 3,
-        .width = win_size.ws_col,
+        .height = win_size.row - 3,
+        .width = win_size.col,
     };
 }

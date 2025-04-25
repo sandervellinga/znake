@@ -74,9 +74,9 @@ pub const Snake = struct {
 
     pub fn move(self: *Snake, x: u16, y: u16) !void {
         var tailToHead = self.snakeparts.pop();
-        tailToHead.x = x;
-        tailToHead.y = y;
-        try self.snakeparts.insert(0, tailToHead);
+        tailToHead.?.x = x;
+        tailToHead.?.y = y;
+        try self.snakeparts.insert(0, tailToHead.?);
         self.time.reset();
     }
 
